@@ -17,10 +17,9 @@ const calculateMoonDay = (date: Date): number => {
 };
 
 const findNextEkadashi = (date: Date) => {
-  // Simplified - in production use proper calculations
-  let currentDate = date;
+  let currentDate = new Date();
   let daysToAdd = 0;
-  
+
   while (calculateMoonDay(currentDate) !== 11) {
     currentDate = addDays(date, ++daysToAdd);
   }
@@ -37,7 +36,7 @@ export function useLunarInfo(date: Date) {
     queryFn: () => {
       const moonDay = calculateMoonDay(date);
       const nextEkadashi = findNextEkadashi(date);
-      
+
       return {
         moonDay,
         nextEkadashi,
